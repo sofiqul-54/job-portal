@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./employeetemplate.xhtml">
+        <ui:define name="title">
+            Resume
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="twelve column content_main">
+                <h:form  id="jp">                    
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    <h4>Basic Info</h4>
+                    <div class="row"> 
+                        <div class="four columns">
+                            <h5><h:outputText id="fname" value="#{empBasicInfo.first_name} #{empBasicInfo.middle_name} #{empBasicInfo.last_name}"></h:outputText></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="eight columns">
+                            <div class="row">
+                                <div class="three columns">
+                                    <label for="cno">Contact No.</label>                        
+                                </div>
+                                <div class="three columns">
+                                    <h:outputText id="cno" value="#{empBasicInfo.contact_no}"></h:outputText>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="three columns">
+                                    <label for="email">Email:</label>
+                                </div>
+                                <div class="three columns">
+                                    <h:outputText id="email" value="#{empBasicInfo.email}"></h:outputText>
+                                </div>
+                            </div>                    
+                            <div class="row">
+                                <div class="three columns">
+                                    <label for="add">Address:</label>
+                                </div>
+                                <div class="three columns">
+                                    <h:outputText id="add" value="#{empBasicInfo.address}"></h:outputText>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="four columns">
+                            <p:graphicImage url="./../resources/images/user-icon.png" width="100" height="100"></p:graphicImage>
+                        </div>
+                    </div>
+                    <h4>Career Objective</h4>
+                    <h4>Employment History</h4>
+                    <div class="row">
+                        <h:dataTable value="#{employmentHistory.emphisList}" var="eh" id="maintable1" class="u-full-width"
+                                     >
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Company Name" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.company_name}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Company Category" />  
+                                </f:facet> 
+                                <h:outputText value="#{eh.com_cat_name}" />  
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Location" />  
+                                </f:facet>
+                                <h:outputText value="#{eh.company_location}" /> 
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Dept." />  
+                                </f:facet>                             
+                                <h:outputText value="#{eh.department}" />
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Position" />  
+                                </f:facet>                             
+                                <h:outputText value="#{eh.position_held}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Area Expr." />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.area_of_exp}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Respon." />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.responsibilities}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="From" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.form_date}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="To" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.to_date}" />                                                                                   
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    <h4>Academic Qualification:</h4>
+                    <h4>Career and Application Information:</h4>
+                    <h4>Personal Details:</h4>
+                    <div class="row"> 
+                        <div class="four columns">
+                            <label for="fn">Father's Name:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText id="fn" value="#{empBasicInfo.father_name}"></h:outputText>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="four columns">
+                            <label for="mn">Mother's Name:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText id="mn" value="#{empBasicInfo.mother_name}" ></h:outputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="four columns">
+                            <label for="nlty">Nationality:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText id="nlty" value="#{empBasicInfo.nationality}"></h:outputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="four columns">
+                            <label for="dob">Date of Birth:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText id="dob" value="#{empBasicInfo.dob}"></h:outputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="four columns">
+                            <label for="ms">Marital Status:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText value="#{empBasicInfo.marital_status}" id="ms"> </h:outputText> 
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="four columns">
+                            <label for="gender">Gender:</label>
+                        </div>
+                        <div class="eight columns">
+                            <h:outputText id="gender" value="#{empBasicInfo.gender}"></h:outputText>
+                        </div>
+                    </div>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

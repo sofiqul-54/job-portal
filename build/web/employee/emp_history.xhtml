@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./employeetemplate.xhtml">
+        <ui:define name="title">
+            Employment History
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="twelve column content_main">
+                <h:form  id="jp">                    
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    <h4>Employment History</h4>
+                    <div class="row"> 
+                        <div class="six columns">
+                            <label for="comcat">Company Category</label>
+                            <p:selectOneMenu value="#{employmentHistory.com_cat_name}" id="comcat" class="u-full-width" required="true" requiredMessage="Company Category Required">  
+                                <f:selectItem itemLabel="Select Company Category" itemValue="" />
+                                <f:selectItems value="#{employmentHistory.comCat}"/> 
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="six columns">
+                            <label for="comname">Company Name</label>
+                            <p:inputText id="comname" value="#{employmentHistory.company_name}" required="true" requiredMessage="Enter Company Name" class="u-full-width"></p:inputText>
+                        </div>
+
+                        <div class="six columns">
+                            <label for="comloc">Location</label>
+                            <p:inputText id="comloc" value="#{employmentHistory.company_location}" required="true" requiredMessage="Enter Company Location" class="u-full-width"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="six columns">
+                            <label for="deptname">Department</label>
+                            <p:inputText id="deptname" value="#{employmentHistory.department}" required="true" requiredMessage="Enter Department" class="u-full-width"></p:inputText>
+                        </div>
+
+                        <div class="six columns">
+                            <label for="pos">Position Held</label>
+                            <p:inputText id="pos" value="#{employmentHistory.position_held}" required="true" requiredMessage="Enter Position Held" class="u-full-width"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="six columns">
+                            <label for="aoe">Area of Experience</label>
+                            <p:inputTextarea id="aoe" value="#{employmentHistory.area_of_exp}" required="true" requiredMessage="Enter Area of Experience" class="u-full-width"></p:inputTextarea>
+                        </div>
+
+                        <div class="six columns">
+                            <label for="res">Responsibilities</label>
+                            <p:inputTextarea id="res" value="#{employmentHistory.responsibilities}" required="true" requiredMessage="Enter Responsibilities" class="u-full-width"></p:inputTextarea>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="four columns">
+                            <label for="fd">From Date</label>
+                            <p:calendar effect="explode" value="#{employmentHistory.form_date}" pattern="dd/MM/yyyy"  id="fd"/>
+                        </div>
+                        <div class="four columns">
+                            <label for="td">To Date</label>
+                            <p:calendar effect="explode" value="#{employmentHistory.to_date}" pattern="dd/MM/yyyy"  id="td"/>
+                        </div>
+                        <div class="four columns">
+                            <label for="remember">Continuing</label>
+                            <h:selectBooleanCheckbox id="remember" value="#{employmentHistory.todate}" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p:commandButton action="#{employmentHistory.saveHistoryInfo()}" value="Save" update="msg" ajax="true" class="button-primary"></p:commandButton>
+                    </div>
+                    <div class="row">
+                        <h:dataTable value="#{employmentHistory.emphisList}" var="eh" id="maintable1" class="u-full-width"
+                                     >
+                            <f:facet name="header">  
+                                Employment History 
+                            </f:facet> 
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Company Name" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.company_name}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Company Category" />  
+                                </f:facet> 
+                                <h:outputText value="#{eh.com_cat_name}" />  
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Location" />  
+                                </f:facet>
+                                <h:outputText value="#{eh.company_location}" /> 
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Dept." />  
+                                </f:facet>                             
+                                <h:outputText value="#{eh.department}" />
+                            </h:column> 
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Position" />  
+                                </f:facet>                             
+                                <h:outputText value="#{eh.position_held}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Area Expr." />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.area_of_exp}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Respon." />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.responsibilities}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="From" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.form_date}" />                                                                                   
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="To" />  
+                                </f:facet>  
+                                <h:outputText value="#{eh.to_date}" />                                                                                   
+                            </h:column>
+                            <h:column>                          
+                                <h:commandButton action="#{jobDetails.detailAction()}" value="X" title="Delete History" class="button-primary">
+                                    <f:setPropertyActionListener target="#{jobDetails.job_id}" value="#{o.job_id}" />
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

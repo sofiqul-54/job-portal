@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./maintemplate.xhtml">
+        <ui:define name="title">
+            Search Jobs
+        </ui:define>
+
+        <ui:define name="content">
+
+            <h:form  id="jp" class="w3-container w3-card-4" target="_blank">
+                <p:messages id="msg" closable="true" showDetail="false"/>
+                <div class="row">
+                    <div class="one-half column">
+                        <label for="what">What</label>
+                        <p:autoComplete  value="#{searchJobs.job_title}"   required="true" completeMethod="#{searchJobs.completeWhat}" placeholder="What" id="what"/>
+                    </div>
+                    <div class="one-half column">
+                        <label for="where">Where</label>
+                        <p:autoComplete  value="#{searchJobs.job_location}"   required="true" completeMethod="#{searchJobs.completeWhere}" placeholder="Where" id="where"/>  
+                    </div>
+                </div>
+                <label></label>
+                <div class="row"> 
+                    <div class="one-half column">
+                        <p:commandButton value="Find Jobs"  id="withIcon" action="#{searchJobs.searchAction()}"  
+                                         update=":jp:msg" ajax="true" class="button-primary"/>
+                    </div>
+                </div>
+                <p:spacer height="5"/>
+<!--                    <p:dataTable value="#{searchJobs.jobList}" var="o"  widgetVar="30"  rowKey="row" id="maintable1" class="u-full-width"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+                    <f:facet name="header">  
+                        Job List  
+                    </f:facet> 
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Job Title" />  
+                        </f:facet>  
+                        <h:outputText value="#{o.job_title}" />                                                                                   
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Location" />  
+                        </f:facet> 
+                        <h:outputText value="#{o.job_location}" />  
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="No. of Vacancy" />  
+                        </f:facet>
+                        <h:outputText value="#{o.no_vacancy}" /> 
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Company" />  
+                        </f:facet>                             
+                        <h:outputText value="#{o.start_date}" />
+                    </p:column> 
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value="Date" />  
+                        </f:facet>                             
+                        <h:outputText value="#{o.start_date}" />
+                    </p:column> 
+                    <p:column>                          
+                        <h:commandButton action="#{jobDetails.detailAction()}" value="View Jobs" class="button-primary">
+                            <f:setPropertyActionListener target="#{jobDetails.job_id}" value="#{o.job_id}" />
+                        </h:commandButton>
+                    </p:column>
+                </p:dataTable>-->
+                <p:dataScroller value="#{searchJobs.jobList}" var="job" id="maintable" chunkSize="10" class="u-full-width" >
+                    <f:facet name="header">
+                        Scroll Down to Load More Jobs
+                    </f:facet>
+                    <f:facet name="loader">
+                        <p:commandButton type="button" value="More" icon="ui-icon-circle-triangle-s" class="button-primary"/>
+                    </f:facet>
+                    <p:outputPanel class="u-full-width">
+                        <div class="single_job">
+                            <div class="row">
+                                <div class="one-half column">
+                                    <h:outputText value="Job Title:" />
+                                    <h:outputText value="#{job.job_title}" style="font-weight: bold"/>
+                                </div>
+                                <div class="one-half column">
+                                    <h:outputText value="Job Location:" />
+                                    <h:outputText value="#{job.job_location}" style="font-weight: bold"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="one-half column">
+                                    <h:outputText value="Last Date to Apply:" />
+                                    <h:outputText value="#{job.expr_date}" style="font-weight: bold"/>
+                                </div>
+                                <div class="one-half column">
+                                    <h:outputText value="" />
+                                    <h:commandButton action="#{jobDetails.detailAction()}" value="View Details...">
+                                        <f:setPropertyActionListener target="#{jobDetails.job_id}" value="#{job.job_id}" />
+                                    </h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </p:outputPanel>
+                </p:dataScroller>
+
+            </h:form>
+
+
+        </ui:define>       
+    </ui:composition>
+</html>
+

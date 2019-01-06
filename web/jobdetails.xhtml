@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./maintemplate.xhtml">
+        <ui:define name="title">
+            Job Details
+        </ui:define>
+
+        <ui:define name="content">
+
+            <div class="row">
+                <div class="seven column">
+                    <h:form  id="jp">
+                        <p:messages id="msg" closable="true" showDetail="false"/>
+                        <p:dataScroller value="#{jobDetails.jobList}" var="job" id="maintable" chunkSize="10" class="u-full-width">
+                            <f:facet name="header">
+                                Job Details
+                            </f:facet>
+                            <p:outputPanel> 
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Job Title:" />                                        
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.job_title}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Job Location:" />                                       
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.job_location}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Job Nature:" />                                      
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.job_nature}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="No. of Vacancy:" />                                      
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.no_vacancy}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Experience Required:" />                                     
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.experience_required}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Age Limit:" />                                     
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.age_limit}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Last Date to Apply:" />                                    
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.expr_date}" style="font-weight: bold"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Basic Requirement:" />                                  
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.basic_req}" escape="false"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Educational Requirement:" />                                 
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.edu_req}" escape="false"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Skill Requirement:" />                                
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.skills_req}" escape="false"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Other Benefits:" />                                
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.other_benefit}" escape="false"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="three columns">
+                                        <h:outputText value="Salary:" />                                
+                                    </div>
+                                    <div class="nine columns">
+                                        <h:outputText value="#{job.salary_given}" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="twelve columns">
+                                        <h:commandButton action="#{jobDetails.applyAction()}" value="Apply Now">
+                                            <f:setPropertyActionListener target="#{jobDetails.job_id}" value="#{job.job_id}" />
+                                            <f:setPropertyActionListener target="#{jobDetails.originalURL}" value="#{request.requestURI}?#{request.queryString}" />
+                                        </h:commandButton>
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+                        </p:dataScroller>
+                    </h:form>
+                </div>
+            </div>
+        </ui:define>       
+    </ui:composition>
+</html>
+

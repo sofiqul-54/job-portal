@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./publictemplate.xhtml">
+        <ui:define name="title">
+            Registration
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="row">
+                <div class="twelve column">
+                    <h:form  id="jp" class="w3-container w3-card-4">
+                        <p:messages id="msg" closable="true" showDetail="false"/>
+                        <h4>Sign Up</h4>
+                        <h6>Already Registered? <a href="${request.contextPath}/login.xhtml">Sign In</a></h6>
+                        <div class="row">
+                            <div class="one-half column">
+                                <label for="uname">User Name</label>
+                                <p:inputText  value="#{registration.uname}" class="u-full-width" id="uname" required="true" requiredMessage="Use Name Required"/>  
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one-half column">
+                                <label for="pass">Password</label>
+                                <p:password  value="#{registration.pass}" class="u-full-width" id="pass" required="true" requiredMessage="Password Required"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one-half column">
+                                <label for="act">Account Type</label>
+                                <p:selectOneMenu value="#{registration.role_name}" id="act" class="u-full-width" required="true" requiredMessage="Account Type Required">  
+                                    <f:selectItem itemLabel="Select Account Type" itemValue="" />
+                                    <f:selectItems value="#{registration.roleName}"/> 
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one-half column">
+                                <label for="sqc">Security Question</label>
+                                <p:selectOneMenu value="#{registration.ques}" id="sqc" filter="true" required="true" requiredMessage="Select a Security Question">  
+                                    <f:selectItem itemLabel="Select Security Question" itemValue="" />
+                                    <f:selectItems value="#{registration.securityQuestions}"/> 
+                                </p:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="one-half column">
+                                <label for="sans">Answer</label>
+                                <p:inputText  value="#{registration.sec_answer}" class="u-full-width" id="sans" required="true" requiredMessage="Answer Required"/>
+                            </div>
+                        </div>
+                        <label></label>
+                        <div class="row"> 
+                            <div class="one-half column">
+                                <p:commandButton value="Sign Up"  id="withIcon" action="#{registration.saveRegData()}"  
+                                                 update=":jp:msg" ajax="true" class="button-primary"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <!--                    <div class="five columns">five</div>-->
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

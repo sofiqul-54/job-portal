@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./employertemplate.xhtml">
+        <ui:define name="title">
+            Search Jobs
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="three column content_main">
+                <h:form  id="jp">
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    
+                    <label> Employer</label>
+                    <p:commandButton action="#{loginBean.logout()}" value="LogOut" update="msg" ajax="true" class="button-primary"></p:commandButton>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

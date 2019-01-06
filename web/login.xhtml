@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./maintemplate.xhtml">
+        <ui:define name="title">
+            Login
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="three column content_main">
+                <h:form  id="jp">                    
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    <h4>Login</h4>
+                    <h6>Yet Not Registered? <a href="${request.contextPath}/public/registration.xhtml">Sign Up</a></h6>
+                    <div class="row"> 
+                        <div class="three columns">
+                            <label for="username">User Name</label>
+                            <p:inputText id="username" value="#{loginBean.uname}" ></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="password">Password</label>
+                            <p:password id="password" value="#{loginBean.password}"  feedback="false" redisplay="true"></p:password>
+                        </div>
+                    </div>                  
+
+                    <label for="remember">Remember Me</label>
+                    <h:selectBooleanCheckbox id="remember" value="#{loginBean.remember}" onclick="return check(this);" />
+                    <div class="row">
+                        <p:commandButton action="#{loginBean.doLogin}" value="Login" update="msg" ajax="true" class="button-primary"></p:commandButton>
+                    </div>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

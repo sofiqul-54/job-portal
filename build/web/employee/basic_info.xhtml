@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./employeetemplate.xhtml">
+        <ui:define name="title">
+            Basic Info
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="three column content_main">
+                <h:form  id="jp">                    
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    <h4>Basic Info</h4>
+                    <div class="row"> 
+                        <div class="three columns">
+                            <label for="fname">First Name</label>
+                            <p:inputText id="fname" value="#{empBasicInfo.first_name}" required="true" requiredMessage="Enter First Name" ></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="mname">Middle Name</label>
+                            <p:inputText id="mname" value="#{empBasicInfo.middle_name}" ></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="lname">Last Name</label>
+                            <p:inputText id="lname" value="#{empBasicInfo.last_name}" required="true" requiredMessage="Enter Last Name"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="three columns">
+                            <label for="gender">Gender</label>
+                            <p:selectOneRadio id="gender" value="#{empBasicInfo.gender}">
+                                <f:selectItem itemLabel="Male" itemValue="Male" />
+                                <f:selectItem itemLabel="Female" itemValue="Female" />
+                            </p:selectOneRadio>
+                        </div>
+                        <div class="three columns">
+                            <label for="cno">Contact No.</label>
+                            <p:inputText id="cno" value="#{empBasicInfo.contact_no}" required="true" requiredMessage="Enter Contact No."></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="email">Email</label>
+                            <p:inputText id="email" value="#{empBasicInfo.email}" required="true" requiredMessage="Enter Email"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="three columns">
+                            <label for="fn">Father's Name</label>
+                            <p:inputText id="fn" value="#{empBasicInfo.father_name}" required="true" requiredMessage="Enter Father's Name"></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="mn">Mother's Name</label>
+                            <p:inputText id="mn" value="#{empBasicInfo.mother_name}" required="true" requiredMessage="Enter Mother's Name"></p:inputText>
+                        </div>
+                        <div class="three columns">
+                            <label for="nlty">Nationality</label>
+                            <p:inputText id="nlty" value="#{empBasicInfo.nationality}" required="true" requiredMessage="Enter Nationality"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="three columns">
+                            <label for="dob">Date of Birth</label>
+                            <p:calendar effect="explode" value="#{empBasicInfo.dob}" pattern="dd/MM/yyyy"  id="dob"/>
+                        </div>
+                        <div class="three columns">
+                            <label for="ms">Marital Status</label>
+                            <p:selectOneMenu value="#{empBasicInfo.marital_status}" id="ms" required="true" requiredMessage="Select Marital Status">  
+                                <f:selectItem itemLabel="Select One" itemValue="" />  
+                                <f:selectItem itemLabel="Married" itemValue="Married" />  
+                                <f:selectItem itemLabel="Single" itemValue="Single" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="three columns">
+                            <label for="add">Address</label>
+                            <p:inputTextarea id="add" value="#{empBasicInfo.address}" required="true" requiredMessage="Enter Address"></p:inputTextarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p:commandButton action="#{empBasicInfo.saveBasicInfo}" value="Save" update="msg" ajax="true" class="button-primary"></p:commandButton>
+                    </div>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

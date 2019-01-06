@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./maintemplate.xhtml">
+        <ui:define name="title">
+            Search Jobs
+        </ui:define>
+
+        <ui:define name="content">
+
+            <!--                <div class="row">
+                                <ul> 
+                                    <li><a href="${request.contextPath}">Home</a></li>
+                                    <li><a href="${request.contextPath}/jobpost.xhtml">Job Post</a></li>
+                                <li><a href="#">Apples</a> 
+                                    <ul> 
+                                        <li><a href="#">Red Delicious</a></li> 
+                                        <li><a href="#">Gala</a></li> 
+                                        <li><a href="#">Macintosh</a></li> 
+                                    </ul> 
+                                </li> 
+                                <li><a href="#">Oranges</a> 
+                                    <ul> 
+                                        <li><a href="#">Navel</a></li> 
+                                        <li><a href="#">Valencia</a></li> 
+                                        <li><a href="#">Blood</a></li> 
+                                    </ul> 
+                                </li> 
+                            </ul> 
+                            </div>-->
+
+            <div class="twelve column content_main">
+                <h:form  id="jp">
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+                    <div class="row">
+                        <div class="one-half column">
+                            <label for="what">What</label>
+                            <p:autoComplete  value="#{searchJobs.job_title}"   required="true" completeMethod="#{searchJobs.completeWhat}" placeholder="What" id="what"/>
+                        </div>
+                        <div class="one-half column">
+                            <label for="where">Where</label>
+                            <p:autoComplete  value="#{searchJobs.job_location}"   required="true" completeMethod="#{searchJobs.completeWhere}" placeholder="Where" id="where"/>  
+                        </div>
+                    </div>
+                    <label></label>
+                    <div class="row"> 
+                        <div class="one-half column">
+                            <p:commandButton value="Find Jobs"  id="withIcon" action="#{searchJobs.searchAction()}"  
+                                     update=":jp:msg" ajax="true" class="button-primary"/>
+                        </div>
+                    </div>
+                    <a href="${request.contextPath}/login.xhtml">Sign In</a> <a href="${request.contextPath}/public/registration.xhtml">Sign Up</a>
+                </h:form>
+            </div>            
+        </ui:define>       
+    </ui:composition>
+</html>
+

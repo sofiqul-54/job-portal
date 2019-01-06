@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./employertemplate.xhtml">
+        <ui:define name="title">
+            Job Post
+        </ui:define>
+
+        <ui:define name="content">
+
+            <div class="row">
+                <div class="twelve column">
+                    <h:form  id="jp" class="w3-container w3-card-4">
+                        <p:messages id="msg" closable="true" showDetail="false"/>
+                        <h4>Job Posting Form</h4>
+                        <label for="cat">Select Job Category</label>
+                        <p:selectOneMenu value="#{jobpost.job_cat}" id="cat" class="u-full-width" filter="true">  
+                            <f:selectItem itemLabel="Select Job Category" itemValue="" />
+                            <f:selectItems value="#{jobpost.jobCatName}"/> 
+                        </p:selectOneMenu>
+
+                        <label for="jt">Job Title</label>
+                        <p:inputText  value="#{jobpost.job_title}" class="u-full-width" id="jt" required="true"/>  
+                        <label for="jobn">Job Nature</label>
+                        <p:selectOneMenu value="#{jobpost.job_nature}" id="jobn">  
+                            <f:selectItem itemLabel="Select One" itemValue="" />  
+                            <f:selectItem itemLabel="Full Time" itemValue="Full Time" />  
+                            <f:selectItem itemLabel="Part Time" itemValue="Part Time" />
+                            <f:selectItem itemLabel="Contractual" itemValue="Contractual" />  
+                            <f:selectItem itemLabel="Project Based" itemValue="Project Based" />
+                        </p:selectOneMenu>
+                        <label for="jl">Job Location</label>
+                        <p:inputText  value="#{jobpost.job_location}" class="u-full-width" id="jl"/>
+                        <label for="nv">No. of Vacancy</label>
+                        <p:inputText  value="#{jobpost.no_vacancy}" class="u-full-width" id="nv"/>
+                        <label for="al">Age Limit</label>
+                        <p:inputText  value="#{jobpost.age_limit}" class="u-full-width" id="al" placeholder="Age 25 to 30 year(s)"/>
+                        <div class="row"> 
+                            <div class="four columns">
+                                <label for="sd">Start Date</label>
+                                <p:calendar effect="explode" value="#{jobpost.start_date}" pattern="dd/MM/yyyy"  id="sd"/>
+                            </div>
+                            <div class="four columns">
+                                <label for="ed">End Date</label>
+                                <p:calendar effect="explode" value="#{jobpost.end_date}" pattern="dd/MM/yyyy" id="ed"/> 
+                            </div>
+                            <div class="four columns">
+                                <label for="expd">Expire Date</label>
+                                <p:calendar effect="explode" value="#{jobpost.expr_date}" pattern="dd/MM/yyyy" id="expd"/>
+                            </div>
+                        </div>                            
+                        <label for="br">Basic Requirements/Job Description</label>
+                        <p:editor  value="#{jobpost.basic_req}" class="u-full-width" id="br"/>
+                        <label for="er">Educational Requirements</label>
+                        <p:editor  value="#{jobpost.edu_req}" class="u-full-width" id="er"/>
+                        <label for="sr">Skill Required</label>
+                        <p:editor  value="#{jobpost.skills_req}" class="u-full-width" id="sr"/>
+                        <label for="salr">Salary Range</label>
+                        <p:inputText  value="#{jobpost.salary_given}" class="u-full-width" id="salr"/>
+                        <label for="expreq">Experience Required</label>
+                        <p:inputText  value="#{jobpost.expr_req}" class="u-full-width" id="expreq" placeholder="3 to 4 year(s)"/>
+                        <label for="othrb">Other Benefits</label>
+                        <p:editor  value="#{jobpost.benifit}" class="u-full-width" id="othrb"/>
+                        <p:commandButton value=" Save"  id="withIcon" action="#{jobpost.saveJobPost()}"  
+                                         update=":jp:msg" class="button-primary" ajax="true"/>
+                        <p:commandButton value="Reset" class="button-primary" action="{voucher.clearAlls()}" update=":jp:msg"></p:commandButton>
+
+                        <p:spacer height="20"/>
+                    </h:form>
+                </div>
+                <!--                    <div class="five columns">five</div>-->
+            </div>
+        </ui:define>       
+    </ui:composition>
+</html>
+

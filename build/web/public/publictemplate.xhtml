@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Title</ui:insert></title>
+        <meta charset="utf-8"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
+
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/normalize.css"/>
+        <link rel="stylesheet" href="${request.contextPath}/resources/css/skeleton.css"/>
+
+        <!-- Favicon
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="icon" type="image/png" href="${request.contextPath}/resources/images/favicon.png"/>
+    </h:head>
+
+    <h:body>
+        <!--<div><p:graphicImage url="./resources/images/outlook.png" /></div>-->
+        <div class="header_option mkhidden">
+            <div class="container">
+                <a href="${request.contextPath}"><div class="header_image"><p:graphicImage url="./../resources/images/logo.png" /></div></a>
+                <div class="header_text">
+                    <h1>Job Portal</h1> 
+                    <p>Nowhere to go, search all jobs here!</p> 
+                </div>
+            </div>
+        </div>
+        <!--Navigation-->
+        <div class="band navigation menu_option">
+            <nav class="container primary">
+                <div class="sixteen columns">
+                    <ul>
+                        <li><a href="${request.contextPath}">Home</a></li>
+                        <li><a href="${request.contextPath}">Employer</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container content_back">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+        <div class="footer_option mkhidden">
+            <div class="container">
+                <nav class="foooter_menu mkhidden">
+                    <ul>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">feedback</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                    </ul>
+                </nav>
+                <p>Copyright © 2014 - 2015. All Right Reserved.</p>
+            </div>
+        </div>
+    </h:body>
+
+</html>

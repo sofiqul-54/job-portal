@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="./admintemplate.xhtml">
+        <ui:define name="title">
+            Company Category
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form  id="jp">
+                <div class="row">
+
+                    <p:messages id="msg" closable="true" showDetail="false"/>
+
+                    <h4>Add Company Category</h4>
+                    <div class="row"> 
+                        <div class="one-half column">
+                            <label for="comcat">Company Category</label>
+                            <p:inputText id="comcat" value="#{comCat.com_cat_name}" required="true" requiredMessage="Enter Category Name" class="u-full-width"></p:inputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p:commandButton action="#{comCat.saveComCat()}" value="Save" update="msg ccat" ajax="true" class="button-primary"></p:commandButton>
+                    </div>                
+                </div>
+                <div class="row"> 
+                    <p:dataTable value="#{comCat.comCatName}" var="o" paginator="true" rows="5" id="ccat" class="u-full-width"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="3,5,10" widgetVar="50" editable="true">
+                        <f:facet name="header">  
+                            Company Category  
+                        </f:facet>
+                        <p:ajax event="rowEdit" listener="#{comCat.onEdit}" update=":jp:msg :jp:ccat" />  
+                        <p:ajax event="rowEditCancel" listener="#{comCat.onCancel}" update=":jp:msg :jp:ccat" /> 
+                        <p:column>
+                            <f:facet name="header">  
+                                Company Category Name  
+                            </f:facet>
+                            <p:cellEditor>  
+                                <f:facet name="output">  
+                                    <h:outputText value="#{o.com_cat_name}"/>  
+                                </f:facet>  
+                                <f:facet name="input">  
+                                    <p:inputText value="#{o.com_cat_name}" style="width:100%"/>  
+                                </f:facet>  
+                            </p:cellEditor> 
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">  
+                                Status 
+                            </f:facet>
+                                <p:selectOneRadio value="#{o.com_cat_status}">
+                                    <f:selectItem itemLabel="Status" itemValue="#{o.com_cat_status}" />  
+                                </p:selectOneRadio>
+                        </p:column>
+                        <p:column headerText="Options" style="width:50px">  
+                            <p:rowEditor />  
+                        </p:column> 
+                    </p:dataTable>
+                </div>
+            </h:form>
+        </ui:define>       
+    </ui:composition>
+</html>
+
